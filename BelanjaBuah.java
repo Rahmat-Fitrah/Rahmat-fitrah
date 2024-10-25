@@ -1,67 +1,52 @@
 import java.util.Scanner;
+
 public class BelanjaBuah {
     public static void main(String[] args) {
-        String NamaBuah[] = new String[100];      
-        String[][] Buah={
-            {"Apel","35000"},//0
-            {"jeruk","50000"},//1
-            {"mangga","25000"},//2
-            {"duku","15000"},//3
-            {"semangka","20000"}//4
-        };    
-        int Total[] = new int[100];
-        int Jumlah[] = new int[100];
-        int Subtotal[] = new int[100];
-        Scanner sc = new Scanner(System.in);
-        String inputData = "y";
-        int i=0;
-            do{
-                System.out.print("Masukan Nama Buah:");
-                NamaBuah[i] = sc.nextLine();
+        Scanner scanner = new Scanner(System.in);
 
-                System.out.print("Masukan jumlah Buah:");
-                Jumlah[i] = sc.nextInt();
+        String[] Buah = {"Apel", "jeruk", "Mangga", "Duku", "Semangka"};
+        int[] Harga = {35000, 50000, 25000, 15000, 20000};
+        int[] Totalharga = new int[Buah.length];
 
-                System.out.print("Pilih Buah[0-4]:");
-                Buah[i][i] = sc.nextLine();
+        int total = 0;
 
-                System.out.print("Input Lagih?: (y/n) ");
-                inputData = sc.nextLine();
-                i++;
-            } while(i<NamaBuah.length && inputData.equalsIgnoreCase("y"));
-            sc.close(); 
-            
-            System.out.println("Masukan Jumlah Data: "+ i);
+        while (true) {
+            System.out.print("Pilih Buah 1-4: ");
+            int BelanjaBuah = scanner.nextInt();
 
-            System.out.println("");
-            int x=1;
-            for (int j = 0; j< NamaBuah.length; j++){
-                if (NamaBuah[j]!=null) {
-                    System.out.println("------------------------------------------------");
-                    System.out.println("Namabuah ke: "+ (x++));
-                    System.out.println("Nama Buah: "+NamaBuah[j]);
-                    System.out.println("jumlah: "+Jumlah[j]);                  
-                    System.out.println("Buah: "+Buah[j]);
-                }
+            if (BelanjaBuah < 0 || BelanjaBuah >= Buah.length) {
+                System.out.println("Pilihan tidak valid.");
+                continue;
             }
-                   
 
-        System.out.println("\nDaftar Belanja");
-        System.out.println("================================================================================================================");
-        System.out.println("No \t\t Nama Buah \t\t Jumlah \t\t Harga  \t\t Subtotal");
-        System.out.println("----------------------------------------------------------------------------------------------------------------");
-        x=1;
-        for (int k = 0; k < NamaBuah.length; k++){
-            if (NamaBuah[k] != null) {  
-                System.out.println((x++) + "\t\t" + NamaBuah[k] +"\t\t" +Jumlah[k] + "\t\t"+Buah +"\t\t"+Subtotal[k]);
+            System.out.print("Masukkan jumlah Buah: ");
+            int quantity = scanner.nextInt();
+            Totalharga[BelanjaBuah] += quantity;
+
+            total += Harga[BelanjaBuah] * quantity;
+
+            System.out.print("Input lagi? (y/n): ");
+            String input = scanner.next();
+
+            if (!input.equalsIgnoreCase("y")) {
+                break;
             }
-        }System.out.println("=================================================================================================================");
-            double jumlah=0;
+        }
+        System.out.println("Daftar Belanja:");
+        System.out.println("======================================================================");
+        System.out.println("No.\t\tNama Buah \tJumlah \t\tHarga \t\tSubtotal");
+        System.out.println("----------------------------------------------------------------------");
+        for (int i = 0; i < Buah.length; i++) {
+            if (Totalharga[i] > 0) {
+                System.out.printf("%d.\t\t%s\t\t%d\t\t%d\t\t%d\n", i + 0, Buah[i], Totalharga[i], Harga[i], Harga[i] * Totalharga[i]);
+            }
+        }System.out.println("==================================================================");
 
-        double TotalBayar = jumlah * i;
-        System.out.println("Total:"+Total);
-        System.out.println("Discount:"+TotalBayar);
-        System.out.println("Total Bayar:"+TotalBayar);
-        
+        System.out.println("Total:\t\t" + total);
+        int discount = (int) (total * 0.15);
+        System.out.println("Discount (15%):\t" + discount);
+        System.out.println("Total bayar:\t" + (total - discount));
+
+        scanner.close();
     }
 }
