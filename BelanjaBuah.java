@@ -11,7 +11,7 @@ public class BelanjaBuah {
         int total = 0;
 
         while (true) {
-            System.out.print("Pilih Buah 1-4: ");
+            System.out.print("Pilih Buah 1-5: ");
             int BelanjaBuah = scanner.nextInt();
 
             if (BelanjaBuah < 0 || BelanjaBuah >= Buah.length) {
@@ -20,10 +20,10 @@ public class BelanjaBuah {
             }
 
             System.out.print("Masukkan jumlah Buah: ");
-            int quantity = scanner.nextInt();
-            Totalharga[BelanjaBuah] += quantity;
+            int hasil = scanner.nextInt();
+            Totalharga[BelanjaBuah] += hasil;
 
-            total += Harga[BelanjaBuah] * quantity;
+            total += Harga[BelanjaBuah] * hasil;
 
             System.out.print("Input lagi? (y/n): ");
             String input = scanner.next();
