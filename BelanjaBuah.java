@@ -11,7 +11,7 @@ public class BelanjaBuah {
         int total = 0;
 
         while (true) {
-            System.out.print("Pilih Buah 1-5: ");
+            System.out.print("Pilih Buah 0-4: ");
             int BelanjaBuah = scanner.nextInt();
 
             if (BelanjaBuah < 0 || BelanjaBuah >= Buah.length) {
