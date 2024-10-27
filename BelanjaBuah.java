@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class BelanjaBuah {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -9,7 +8,13 @@ public class BelanjaBuah {
         int[] Totalharga = new int[Buah.length];
 
         int total = 0;
-
+     
+        System.out.println("""
+                Menu :
+                1. Beli Buah
+                2. Struk belanja
+                3. Keluar
+                """);
         while (true) {
             System.out.print("Pilih Buah 0-4: ");
             int BelanjaBuah = scanner.nextInt();
